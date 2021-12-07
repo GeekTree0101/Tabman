@@ -195,6 +195,12 @@ open class TabmanViewController: PageboyViewController, PageboyViewControllerDel
                   didRequestScrollTo index: PageboyViewController.PageIndex) {
         scrollToPage(.at(index: index), animated: true, completion: nil)
     }
+
+    /// :nodoc:
+    open func shouldScrollToBar(_ bar: TMBar,
+                                willRequestScrollTo index: Int) -> Bool {
+        return true
+    }
 }
 
 // MARK: - Bar Layout

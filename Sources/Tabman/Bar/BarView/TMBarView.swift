@@ -549,12 +549,18 @@ extension TMBarView: TMBarButtonInteractionHandler, GestureScrollViewGestureDele
     func barButtonInteraction(controller: TMBarButtonInteractionController,
                               didHandlePressOf button: TMBarButton,
                               at index: Int) {
+        guard delegate?.shouldScrollToBar(self, willRequestScrollTo: index) ?? false else {
+            return
+        }
         delegate?.bar(self, didRequestScrollTo: index)
     }
     
     func scrollView(_ scrollView: GestureScrollView,
                     didReceiveSwipeTo direction: UISwipeGestureRecognizer.Direction) {
         let index = Int(indicatedPosition ?? 0)
+        guard delegate?.shouldScrollToBar(self, willRequestScrollTo: index) ?? false else {
+            return
+        }
         switch direction {
         case .right, .down:
             delegate?.bar(self, didRequestScrollTo: max(0, index - 1))

@@ -30,6 +30,14 @@ public protocol TMBarDelegate: class {
     ///   - index: The new index.
     func bar(_ bar: TMBar,
              didRequestScrollTo index: Int)
+
+    /// Bar will requires scrolling to a new page following a user interaction. also you can control it
+    ///
+    /// - Parameters:
+    ///   - bar: The bar.
+    ///   - index: The new index.
+    func shouldScrollToBar(_ bar: TMBar,
+                           willRequestScrollTo index: Int) -> Bool
 }
 
 /// Context for causing a reload of a bar.
